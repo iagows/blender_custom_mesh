@@ -111,10 +111,15 @@ def unregister():
 
 # Addon information
 bl_info = {
-    "name": "Addon RPG",
+    "name": "Addon Custom Meshes",
     "blender": (4, 0, 0),  # Minimum Blender version (4.0 or higher)
     "category": "Object",
     "description": "Adds objects from .blend files to the mesh add menu.",
+    "author": "Iago Alves",
+    "version": (1, 0, 0),
+    "support": 'COMMUNITY',
+    "tracker_url": "https://github.com/iagows/blender_custom_mesh/issues",
+    "website": "https://github.com/iagows/blender_custom_mesh",
 }
 
 if __name__ == "__main__":
