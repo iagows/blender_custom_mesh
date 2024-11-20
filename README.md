@@ -22,7 +22,3 @@ I don't care. Probably I'll never touch it again, only to add menus and files.
 ## Issues or suggestions?
 
 Ping me on github.
-
-## Extra
-
-my startup file for Ender 3v3 SE
