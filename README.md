@@ -12,12 +12,26 @@ I don't care. Probably I'll never touch it again, only to add menus and files.
 
 ## How to use
 
-1. Find "blender_menus".
-    1. Label is for the menu label
-    1. base path is the folder that contains the files
-    1. blender_files
-        1. label is for the item label
-        1. file_name is the file name
+create a file ~/.config/custom_assets.json
+
+``` json
+{
+    "menu": [
+        {
+            "label": "Example",
+            "path": "~/models/pcb",
+            "files": [
+                {
+                    "label": "Something",
+                    "file": "example"
+                }
+            ]
+        }
+    ]
+}
+```
+
+> Don't add '.blend' extension to files!
 
 ## Issues or suggestions?
 

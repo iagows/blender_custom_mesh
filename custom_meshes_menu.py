@@ -1,5 +1,6 @@
 import bpy
 import os
+import json
 
 # Class to represent a Blender file
 class BlenderFile:
@@ -14,24 +15,21 @@ class BlenderMenu:
         self.base_path = base_path
         self.blender_files = blender_files
 
-# List of Blender menus
-blender_menus = [
-    BlenderMenu(
-        label="RPG",
-        base_path=os.path.expanduser("~/models/rpg"),
-        blender_files=[
-            BlenderFile(label="A", file_name="a"),
-            BlenderFile(label="B", file_name="b")
-        ]
-    ),
-    BlenderMenu(
-        label="Example",
-        base_path=os.path.expanduser("~/models/pcb"),
-        blender_files=[
-            BlenderFile(label="Something", file_name="example")
-        ]
-    )
-]
+# Function to read the JSON file and create Blender menus
+def load_blender_menus_from_json(json_path):
+    with open(os.path.expanduser(json_path), 'r') as f:
+        data = json.load(f)
+    
+    menus = []
+    for menu_data in data['menu']:
+        files = [BlenderFile(label=f['label'], file_name=f['file']) for f in menu_data['files']]
+        menu = BlenderMenu(label=menu_data['label'], base_path=os.path.expanduser(menu_data['path']), blender_files=files)
+        menus.append(menu)
+    
+    return menus
+
+# Load Blender menus from the specified JSON file
+blender_menus = load_blender_menus_from_json("~/.config/custom_assets.json")
 
 # Class to add objects from a .blend file
 class AddObjectsFromBlend(bpy.types.Operator):
@@ -116,7 +114,7 @@ bl_info = {
     "category": "Object",
     "description": "Adds objects from .blend files to the mesh add menu.",
     "author": "Iago Alves",
-    "version": (1, 0, 0),
+    "version": (1, 1, 0),
     "support": 'COMMUNITY',
     "tracker_url": "https://github.com/iagows/blender_custom_mesh/issues",
     "website": "https://github.com/iagows/blender_custom_mesh",
